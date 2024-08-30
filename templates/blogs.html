@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Main CSS File -->
+    <link href="{{ url_for('static', filename='css/main.css') }}"  rel="stylesheet">
+    <!-- Script -->
+    <script src="{{ url_for('static', filename='js/main.js') }}" ></script>
+    
+    <!-- نمایش نام topic در title -->
+    <title> All Blogs </title>
+    
+    <script>
+        function myFunction() {
+          var x = document.getElementById("myTopnav");
+          if (x.className === "topnav") {
+            x.className += " responsive";
+          } else {
+            x.className = "topnav";
+          }
+        }
+    </script>
+</head>
+فخحه
+
+
+
+</head>
+
+<body>
+
+    <div id="progress">
+        <span id="progress-value">&#x1F815;</span>
+    </div>
+  
+    <header>
+        <div class="logo">
+          <h1 class="logo-text">
+            <span>Blog</span>Project
+          </h1>
+        </div>
+        <div class="search-container">
+          <input type="text" name="search" placeholder="Search..." class="search-input">
+          <a href="#" class="search-btn">
+                  <i class="fa fa-search"></i>      
+          </a>
+        </div>
+        <i class="fa fa-bars menu-toggle"></i>
+        <ul class="nav">
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('blogs') }}">blogs</a></li>
+            <li><a href="{{ url_for('about') }}">about</a></li>
+            <li><a href="{{ url_for('contact') }}">contact</a></li>
+            <li><a href="{{ url_for('login') }}">sign up/login</a></li>
+            <li>
+              <a href="" style="min-width: 160px;"><i class="fa fa-user"></i>Ana Meyzbgh<i class="fa fa-chevron-down" style="font-size: .8em;"></i></a>
+              <ul>
+                <li><a href="{{ url_for('dashboard') }}">dashboard</a></li>
+                <li><a href="{{ url_for('logout') }}">logout</a></li>
+            </ul>
+          </li>
+        </ul>
+    </header>
+
+
+
+    <section id="blog">
+    <div class="blog-heading" style="background: url(../static/images/Background.png)">
+        <h1>All Blogs</h1>
+        <ul class="breadcrumb-list">
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li class="special">Gaming</li>
+        </ul>
+    </div>
+    <!--blog-container-->
+    <div class="blog-container">
+        <div class="blog-box">
+            <div class="blog-img">
+                <img src="{{ url_for('static', filename='images/Food-science-and-nutrition-vs-food-technology.jpg') }}" alt="blog">
+            </div>
+            <div class="blog-text">
+                <i class="fa fa-tag"><a href="">Travel</a></i>
+                <a href="" class="blog-title">abygai AYGBCBF ABFIUUSF ZBVSB</a>
+                <ul class="author-info">
+                    <li>
+                        <a href="#">
+                            <img src="{{ url_for('static', filename='images/profile4.jpg') }}" alt="thumb">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">Joseph Crawford</a>
+                        <a href="#">01.05.2024</a>
+                    </li>
+                </ul>
+                <div class="buttons">
+                    <a href="" class="read-more">Read More</a>
+                </div>
+            </div>
+        </div>
+        <div class="blog-box">
+            <div class="blog-img">
+                <img src="{{ url_for('static', filename='images/Food-science-and-nutrition-vs-food-technology.jpg') }}" alt="blog">
+            </div>
+            <div class="blog-text">
+                <i class="fa fa-tag"><a href="">Travel</a></i>
+                <a href="" class="blog-title">abygai AYGBCBF ABFIUUSF ZBVSB</a>
+                <ul class="author-info">
+                    <li>
+                        <a href="#">
+                            <img src="{{ url_for('static', filename='images/profile2.jpg') }}" alt="thumb">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">Joseph Crawford</a>
+                        <a href="#">01.05.2024</a>
+                    </li>
+                </ul>
+                <div class="buttons">
+                    <a href="" class="read-more">Read More</a>
+                </div>
+            </div>
+        </div>
+        <div class="blog-box">
+            <div class="blog-img">
+                <img src="{{ url_for('static', filename='images/Food-science-and-nutrition-vs-food-technology.jpg') }}" alt="blog">
+            </div>
+            <div class="blog-text">
+                <i class="fa fa-tag"><a href="">Travel</a></i>
+                <a href="" class="blog-title">abygai AYGBCBF ABFIUUSF ZBVSB</a>
+                <ul class="author-info">
+                    <li>
+                        <a href="#">
+                            <img src="{{ url_for('static', filename='images/profile3.jpg') }}" alt="thumb">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">Joseph Crawford</a>
+                        <a href="#">01.05.2024</a>
+                    </li>
+                </ul>
+                <div class="buttons">
+                    <a href="" class="read-more">Read More</a>
+                </div>
+            </div>
+        </div>
+        <div class="blog-box">
+            <div class="blog-img">
+                <img src="{{ url_for('static', filename='images/Food-science-and-nutrition-vs-food-technology.jpg') }}" alt="blog">
+            </div>
+            <div class="blog-text">
+                <i class="fa fa-tag"><a href="">Travel</a></i>
+                <a href="" class="blog-title">abygai AYGBCBF ABFIUUSF ZBVSB</a>
+                <ul class="author-info">
+                    <li>
+                        <a href="#">
+                            <img src="{{ url_for('static', filename='images/profile5.jpg') }}" alt="thumb">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">Joseph Crawford</a>
+                        <a href="#">01.05.2024</a>
+                    </li>
+                </ul>
+                <div class="buttons">
+                    <a href="" class="read-more">Read More</a>
+                </div>
+            </div>
+        </div>
+        <div class="blog-box">
+            <div class="blog-img">
+                <img src="{{ url_for('static', filename='images/Food-science-and-nutrition-vs-food-technology.jpg') }}" alt="blog">
+            </div>
+            <div class="blog-text">
+                <i class="fa fa-tag"><a href="">Travel</a></i>
+                <a href="" class="blog-title">abygai AYGBCBF ABFIUUSF ZBVSB</a>
+                <ul class="author-info">
+                    <li>
+                        <a href="#">
+                            <img src="{{ url_for('static', filename='images/profile4.jpg') }}" alt="thumb">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">Joseph Crawford</a>
+                        <a href="#">01.05.2024</a>
+                    </li>
+                </ul>
+                <div class="buttons">
+                    <a href="" class="read-more">Read More</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="blog-box">
+            <div class="blog-img">
+                <img src="{{ url_for('static', filename='images/Food-science-and-nutrition-vs-food-technology.jpg') }}" alt="blog">
+            </div>
+            <div class="blog-text">
+                <i class="fa fa-tag"><a href="">Travel</a></i>
+                <a href="" class="blog-title">abygai AYGBCBF ABFIUUSF ZBVSB</a>
+                <ul class="author-info">
+                    <li>
+                        <a href="#">
+                            <img src="{{ url_for('static', filename='images/profile5.jpg') }}" alt="thumb">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">Joseph Crawford</a>
+                        <a href="#">01.05.2024</a>
+                    </li>
+                </ul>
+                <div class="buttons">
+                    <a href="" class="read-more">Read More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </section>
+</body>
+</html>

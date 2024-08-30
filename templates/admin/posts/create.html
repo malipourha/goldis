@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Add Post</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script>
+        tinymce.init({
+  selector: 'textarea#full-featured-non-premium',
+  plugins: 'preview importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen image link media template codesample table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount help charmap quickbars emoticons',
+  imagetools_cors_hosts: ['picsum.photos'],
+  menubar: 'file edit view insert format tools table help',
+  toolbar: 'undo redo | bold italic underline strikethrough | fontfamily fontsize blocks | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | forecolor backcolor removeformat | pagebreak | charmap emoticons | fullscreen  preview save print | insertfile image media template link anchor codesample | ltr rtl',
+  toolbar_sticky: true,
+  autosave_ask_before_unload: true,
+  autosave_interval: "30s",
+  autosave_prefix: "{path}{query}-{id}-",
+  autosave_restore_when_empty: false,
+  autosave_retention: "2m",
+  image_advtab: true,
+  content_css: '//www.tiny.cloud/css/codepen.min.css',
+  link_list: [
+    { title: 'My page 1', value: 'http://www.tinymce.com' },
+    { title: 'My page 2', value: 'http://www.moxiecode.com' }
+  ],
+  image_list: [
+    { title: 'My page 1', value: 'http://www.tinymce.com' },
+    { title: 'My page 2', value: 'http://www.moxiecode.com' }
+  ],
+  image_class_list: [
+    { title: 'None', value: '' },
+    { title: 'Some class', value: 'class-name' }
+  ],
+  importcss_append: true,
+  file_picker_callback: function (callback, value, meta) {
+    /* Provide file and text for the link dialog */
+    if (meta.filetype === 'file') {
+      callback('https://www.google.com/logos/google.jpg', { text: 'My text' });
+    }
+
+    /* Provide image and alt text for the image dialog */
+    if (meta.filetype === 'image') {
+      callback('https://www.google.com/logos/google.jpg', { alt: 'My alt text' });
+    }
+
+    /* Provide alternative source and posted for the media dialog */
+    if (meta.filetype === 'media') {
+      callback('movie.mp4', { source2: 'alt.ogg', poster: 'https://www.google.com/logos/google.jpg' });
+    }
+  },
+  templates: [
+        { title: 'New Table', description: 'creates a new table', content: '<div class="mceTmpl"><table width="98%%"  border="0" cellspacing="0" cellpadding="0"><tr><th scope="col"> </th><th scope="col"> </th></tr><tr><td> </td><td> </td></tr></table></div>' },
+    { title: 'Starting my story', description: 'A cure for writers block', content: 'Once upon a time...' },
+    { title: 'New list with dates', description: 'New List with dates', content: '<div class="mceTmpl"><span class="cdate">cdate</span><br /><span class="mdate">mdate</span><h2>My List</h2><ul><li></li><li></li></ul></div>' }
+  ],
+  template_cdate_format: '[Date Created (CDATE): %m/%d/%Y : %H:%M:%S]',
+  template_mdate_format: '[Date Modified (MDATE): %m/%d/%Y : %H:%M:%S]',
+  height: 520,
+  image_caption: true,
+  quickbars_selection_toolbar: 'bold italic | quicklink h2 h3 blockquote quickimage quicktable',
+  noneditable_noneditable_class: "mceNonEditable",
+  toolbar_mode: 'sliding',
+  contextmenu: "link image imagetools table",
+ });
+    </script>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <ul class="flashes">
+      {% for message in messages %}
+        <li>{{ message }}</li>
+      {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+          <h1 class="logo-text">
+            <span>Blog</span>Project
+          </h1>
+        </div>
+        <div class="search-container">
+          <input type="text" name="search" placeholder="Search..." class="search-input">
+          <a href="#" class="search-btn">
+                  <i class="fa fa-search"></i>      
+          </a>
+        </div>
+        <i class="fa fa-bars menu-toggle"></i>
+        <ul class="nav">
+          <li><a href="{{ url_for('home') }}">Home</a></li>
+          <li><a href="{{ url_for('blogs') }}">blogs</a></li>
+          <li><a href="{{ url_for('about') }}">about</a></li>
+          <li><a href="{{ url_for('contact') }}">contact</a></li>
+          <li><a href="{{ url_for('login') }}">sign up/login</a></li>
+          <li>
+            <a href="" style="min-width: 160px;"><i class="fa fa-user"></i>{{ session.get('user_email') }}<i class="fa fa-chevron-down" style="font-size: .8em;"></i></a>
+            <ul>
+              <li><a href="{{ url_for('dashboard') }}">dashboard</a></li>
+              <li><a href="{{ url_for('logout') }}">logout</a></li>
+            </ul>
+          </li>
+        </ul>
+    </header>
+
+<!-- admin Page Wrapper -->
+<div class= "admin-wrapper">
+    <!--left sidebar-->
+    <div class="left-sidebar">
+        <ul>
+            <li><a href="{{ url_for('dashboard') }}">Manage profile</a></li>
+            <li><a href="{{ url_for('admin_posts') }}">Manage posts</a></li>
+            <li><a href="{{ url_for('admin_users') }}">Manage users</a></li>
+            <li><a href="{{ url_for('admin_topics') }}">Manage topics</a></li>
+        </ul>
+    </div>
+    <!--// left sidebar-->
+    <!--admin content-->
+    <div class="admin-content">
+        <div class="button-group">
+            <a href="{{ url_for('create_post') }}" class="btn btn-big">Add Post</a>
+            <a href="{{ url_for('admin_posts') }}" class="btn btn-big">Manage Post</a>
+        </div>
+
+        <div class="content" style="display: block;">
+            <h2 class="page-title">Manage Posts</h2>
+            <form action="" method="post">
+                <input type="file" accept="image/*" id="fileInput" onchange="loadImage(event)">
+                <img id="output" width="auto" style="display:none;margin: 30px 0px;"/>
+            
+                <div>
+                    <label>Title</label>
+                    <input type="text" name="title" class="text-input">
+                </div>
+                <div>
+                    <label>Body</label>
+                    <textarea name="body" id="full-featured-non-premium" style="width: 100%;height: 280px;"></textarea>
+                </div>
+                <div>
+                    <label>Topic</label>
+                    <select name="topic" class="text-input">
+                        {% for topic in topics %}
+                            <option value="{{ topic.name }}">{{ topic.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+              
+                <div>
+                    <button type="submit" class="btn btn-big">Add Post</button>
+                </div>
+          </form>
+          
+            
+        </div>
+    </div>
+    <!--// admin content-->
+
+
+</div>
+<!-- // Page Wrapper -->
+   
+
+
+<script>
+    function loadImage(event) {
+        const image = document.getElementById('output');
+        image.src = URL.createObjectURL(event.target.files[0]);
+        image.style.display = "block"; // Show the image
+    }
+</script>
+</body>
+</html>

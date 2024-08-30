@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+    <title>home</title>
+    <!-- FontAwesome JS-->
+  	<script defer src="{{ url_for('static', filename='fontawesome/js/all.min.js') }}"></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <!-- ===== Link Swiper's CSS ===== -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <!-- Main CSS File -->
+    <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">
+  
+
+   
+</head>
+
+<body>
+  
+  <div id="progress">
+    <span id="progress-value">&#x1F815;</span>
+  </div>
+
+  <header>
+    <div class="logo">
+      <h1 class="logo-text">
+        <span>Blog</span>Project
+      </h1>
+    </div>
+    <div class="search-container">
+      <input type="text" name="search" placeholder="Search..." class="search-input">
+      <a href="#" class="search-btn">
+              <i class="fa fa-search"></i>      
+      </a>
+    </div>
+    <i class="fa fa-bars menu-toggle"></i>
+    <ul class="nav">
+      <li><a href="{{ url_for('home') }}">Home</a></li>
+      <li><a href="{{ url_for('blogs') }}">blogs</a></li>
+      <li><a href="{{ url_for('about') }}">about</a></li>
+      <li><a href="{{ url_for('contact') }}">contact</a></li>
+      <li><a href="{{ url_for('login') }}">sign up/login</a></li>
+      <li>
+        <a href="" style="min-width: 160px;"><i class="fa fa-user"></i>{{ session.get('user_email') }}<i class="fa fa-chevron-down" style="font-size: .8em;"></i></a>
+        <ul>
+          <li><a href="{{ url_for('dashboard') }}">dashboard</a></li>
+          <li><a href="{{ url_for('logout') }}">logout</a></li>
+        </ul>
+      </li>
+    </ul>
+</header>
+
+
+<!-- Page Wrapper -->
+  <div class="page wrapper">
+    <!-- Post Slider -->
+    <div class="post-slider">
+        <h1 class="slider-title">Recent Posts</h1>
+        <i class="fas fa-chevron-left prev"></i>
+        <i class="fas fa-chevron-right next"></i>
+        <div class="post-wrapper">
+          {% for post in posts %}
+              <div class="post">
+                  <div class="category">
+                      <a href="{{ url_for('topic', topic=post.topic.name) }}">{{ post.topic.name }}</a>
+                  </div>
+                  <img src="{{ url_for('static', filename='images/post-2.jpg') }}" alt="" class="slider-image">
+                  <div class="post-info">
+                      <div class="post-author">
+                          <img src="{{ url_for('static', filename='images/profile1.jpg') }}">
+                      </div>
+                      <ul class="post-meta">
+                          <li><a href="">{{ post.user_id.username }}</a></li>
+                          <li class="sep"></li>
+                          <li><a class="date">Mar 6, 2019</a></li>
+                      </ul>
+                      <h2>
+                          <a href="{{ url_for('single') }}">{{ post.title }}</a>
+                      </h2>
+                  </div>
+              </div>
+          {% endfor %}
+      
+        </div>
+    </div>
+</div>
+     <!--//Post Slider -->
+     
+<!--content-->
+<div class="content clearfix">
+  <div class="main-content">
+    <h1 class="recent-posts-title">Rcent Posts</h1>
+    <div class="post">
+      <img src="{{ url_for('static', filename='images/Food-science-and-nutrition-vs-food-technology.jpg') }}" alt="" class="post-image">
+      <div class="post-preview">
+        <h2><a href="{{ url_for('single') }}">th best fjsddkjbd</a></h2>
+        <ul class="author-info">
+          <li>
+              <a href="#">
+                  <img src="{{ url_for('static', filename='images/profile2.jpg') }}" alt="thumb">
+              </a>
+          </li>
+          <li>
+              <a href="#">Joseph Crawford</a>
+              <a href="#">01.05.2024</a>
+          </li>
+      </ul>
+        <p class="preview-text">nfdhhhhhhhhh dirrr riiiiiiiiierbs swoiuwbde rhfinhqfuw qcurmhguiqw frewcfwev gfee</p>
+        <a href="{{ url_for('single') }}" class="btn read-more">Read More</a>
+      </div>
+    </div>
+    <div class="post">
+      <img src="{{ url_for('static', filename='images/Food-science-and-nutrition-vs-food-technology.jpg') }}" alt="" class="post-image">
+      <div class="post-preview">
+        <h2><a href="{{ url_for('single') }}">th best fjsddkjbd</a></h2>
+        <ul class="author-info">
+          <li>
+              <a href="#">
+                  <img src="{{ url_for('static', filename='images/profile2.jpg') }}" alt="thumb">
+              </a>
+          </li>
+          <li>
+              <a href="#">Joseph Crawford</a>
+              <a href="#">01.05.2024</a>
+          </li>
+      </ul>
+        <p class="preview-text">nfdhhhhhhhhh dirrr riiiiiiiiierbs swoiuwbde rhfinhqfuw qcurmhguiqw frewcfwev gfee</p>
+        <a href="{{ url_for('single') }}" class="btn read-more">Read More</a>
+      </div>
+    </div>
+    <div class="post">
+      <img src="{{ url_for('static', filename='images/Food-science-and-nutrition-vs-food-technology.jpg') }}" alt="" class="post-image">
+      <div class="post-preview">
+        <h2><a href="{{ url_for('single') }}">th best fjsddkjbd</a></h2>
+        <ul class="author-info">
+          <li>
+              <a href="#">
+                  <img src="{{ url_for('static', filename='images/profile2.jpg') }}" alt="thumb">
+              </a>
+          </li>
+          <li>
+              <a href="#">Joseph Crawford</a>
+              <a href="#">01.05.2024</a>
+          </li>
+      </ul>
+        <p class="preview-text">nfdhhhhhhhhh dirrr riiiiiiiiierbs swoiuwbde rhfinhqfuw qcurmhguiqw frewcfwev gfee</p>
+        <a href="{{ url_for('single') }}" class="btn read-more">Read More</a>
+      </div>
+    </div>
+    <div class="post">
+      <img src="{{ url_for('static', filename='images/Food-science-and-nutrition-vs-food-technology.jpg') }}" alt="" class="post-image">
+      <div class="post-preview">
+        <h2><a href="{{ url_for('single') }}">th best fjsddkjbd</a></h2>
+        <ul class="author-info">
+          <li>
+              <a href="#">
+                  <img src="{{ url_for('static', filename='images/profile2.jpg') }}" alt="thumb">
+              </a>
+          </li>
+          <li>
+              <a href="#">Joseph Crawford</a>
+              <a href="#">01.05.2024</a>
+          </li>
+      </ul>
+        <p class="preview-text">nfdhhhhhhhhh dirrr riiiiiiiiierbs swoiuwbde rhfinhqfuw qcurmhguiqw frewcfwev gfee</p>
+        <a href="{{ url_for('single') }}" class="btn read-more">Read More</a>
+      </div>
+    </div>
+    
+    <div class="post">
+      <img src="{{ url_for('static', filename='images/Food-science-and-nutrition-vs-food-technology.jpg') }}" alt="" class="post-image">
+      <div class="post-preview">
+        <h2><a href="{{ url_for('single') }}">th best fjsddkjbd</a></h2>
+        <ul class="author-info">
+          <li>
+              <a href="#">
+                  <img src="{{ url_for('static', filename='images/profile2.jpg') }}" alt="thumb">
+              </a>
+          </li>
+          <li>
+              <a href="#">Joseph Crawford</a>
+              <a href="#">01.05.2024</a>
+          </li>
+      </ul>
+        <p class="preview-text">nfdhhhhhhhhh dirrr riiiiiiiiierbs swoiuwbde rhfinhqfuw qcurmhguiqw frewcfwev gfee</p>
+        <a href="{{ url_for('single') }}" class="btn read-more">Read More</a>
+      </div>
+    </div>
+  </div>
+  <div class="sidebar">
+    <div class="section search">
+      <h2 class="section-title">Search</h2><form action="{{ url_for('home') }}"method="post">
+        <input type="text" name="search-term" class="text-input" placeholder="search...">
+      </form>
+    </div>
+    <div class="section topics">
+      <h2 class="section-title">TOPICS</h2>
+      <ul>
+          {% for topic in topics %}
+          <li><a href="{{ url_for('blogs3', topic_name=topic.name) }}">{{ topic.name }}</a></li>
+          {% endfor %}
+      </ul>
+  </div>
+  
+  
+  </div>
+</div>
+<!--//content-->
+
+
+
+
+<!--email-box-->
+<div class="email-box">
+  <h2 class="email-title">Subscribe To Get Update Latest Blog Post</h2>
+  <div class="email-input-container">
+      <input type="email" placeholder="Enter your email" class="email-input" required>
+      <button class="send-btn">
+          <i class="fa fa-paper-plane"></i>
+      </button>
+  </div>
+</div>
+<!--//email-box-->
+
+<!-- users slider -->
+<section class="users-slider">
+  <div class="swiper mySwiper container">
+      <div class="swiper-wrapper content">
+          {% for user in users %}
+          <div class="swiper-slide card">
+              <div class="card-content">
+                  <div class="image">
+                      <img src="{{ url_for('static', filename='images/profile1.jpg') }}" alt="{{ user.username }}" />
+                  </div>
+
+                  <div class="media-icons">
+                      <i class="fa fa-facebook"></i>
+                      <i class="fa fa-linkedin"></i>
+                      <i class="fa fa-instagram"></i>
+                  </div>
+
+                  <div class="name-profession">
+                    <span class="name">
+                        <a href="{{ url_for('blogs2', user_id=user.id) }}">{{ user.username }}</a>
+                    </span>
+                    <span class="profession">{{ user.role }}</span>
+                  </div>
+
+                  <div class="rating">
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star-o"></i>
+                  </div>
+
+                  <div class="button">
+                    <a href="{{ url_for('blogs2', user_id=user.id) }}" class="aboutMe">My Blogs</a>
+                  </div>
+              </div> 
+          </div>
+          {% endfor %}
+      </div>
+  </div>
+
+  <div class="swiper-button-next"></div>
+  <div class="swiper-button-prev"></div>
+  <div class="swiper-pagination"></div>
+</section>
+
+
+<!-- //users slider -->
+
+</div>
+<!-- //Page Wrapper -->
+
+
+
+
+<!-- Swiper JS -->
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+<!-- Initialize Swiper -->
+<!-- Script -->
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

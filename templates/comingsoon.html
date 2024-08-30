@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Index - Maundy Bootstrap Template</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <!-- Favicons -->
+  <link href="{{ url_for('static', filename='img/favicon.png') }}" rel="icon">
+  <link href="{{ url_for('static', filename='img/apple-touch-icon.png') }}" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='vendor/aos/aos.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="{{ url_for('static', filename='css/comingsoon.css') }}" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: Maundy
+  * Template URL: https://bootstrapmade.com/maundy-free-coming-soon-bootstrap-theme/
+  * Updated: Aug 07 2024 with Bootstrap v5.3.3
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body class="index-page">
+
+  <header>
+    <div class="logo">
+      <h1 class="logo-text">
+        <span>Blog</span>Project
+      </h1>
+    </div>
+    <div class="search-container">
+      <input type="text" name="search" placeholder="Search..." class="search-input">
+      <a href="#" class="search-btn">
+              <i class="fa fa-search"></i>      
+      </a>
+    </div>
+    <i class="fa fa-bars menu-toggle"></i>
+    <ul class="nav">
+      <li><a href="{{ url_for('home') }}">Home</a></li>
+      <li><a href="{{ url_for('blogs') }}">blogs</a></li>
+      <li><a href="{{ url_for('about') }}">about</a></li>
+      <li><a href="{{ url_for('contact') }}">contact</a></li>
+      <li><a href="{{ url_for('login') }}">sign up/login</a></li>
+       <li>
+        <a href="" style="min-width: 160px;"><i class="fa fa-user"></i>Ana Meyzbgh<i class="fa fa-chevron-down" style="font-size: .8em;"></i></a>
+        <ul>
+          <!--<li><a href="{{ url_for('dashboard') }}">dashboard</a></li>-->
+          <li><a href="{{ url_for('logout') }}">logout</a></li>>
+        </ul>
+      </li>
+    </ul>
+</header>
+
+  <main class="main">
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero section transparent-background">
+
+      <div class="container text-center" data-aos="fade-up" data-aos-delay="100">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <h2>Maundy<br></h2>
+            <p>We are still working on our website. Stay tuned for updates!</p>
+          </div>
+          <div class="countdown d-flex justify-content-center" data-count="2024/12/3">
+            <div>
+              <h3 class="count-days">482</h3>
+              <h4>Days</h4>
+            </div>
+            <div>
+              <h3 class="count-hours">6</h3>
+              <h4>Hours</h4>
+            </div>
+            <div>
+              <h3 class="count-minutes">49</h3>
+              <h4>Minutes</h4>
+            </div>
+            <div>
+              <h3 class="count-seconds">21</h3>
+              <h4>Seconds</h4>
+            </div>
+          </div>
+
+     
+  </main>
+
+
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendor/php-email-form/validate.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendor/aos/aos.js') }}"></script>
+
+  <!-- Main JS File -->
+  <script src="{{ url_for('static', filename='js/comingsoon.js') }}"></script>
+
+
+</body>
+
+</html>

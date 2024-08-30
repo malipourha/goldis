@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <h1 class="logo-text">
+        <span>Blog</span>Project
+      </h1>
+    </div>
+    <div class="search-container">
+      <input type="text" name="search" placeholder="Search..." class="search-input">
+      <a href="#" class="search-btn">
+              <i class="fa fa-search"></i>      
+      </a>
+    </div>
+    <i class="fa fa-bars menu-toggle"></i>
+    <ul class="nav">
+      <li><a href="{{ url_for('home') }}">Home</a></li>
+      <li><a href="{{ url_for('blogs') }}">blogs</a></li>
+      <li><a href="{{ url_for('about') }}">about</a></li>
+      <li><a href="{{ url_for('contact') }}">contact</a></li>
+      <li><a href="{{ url_for('login') }}">sign up/login</a></li>
+      <li>
+        <a href="" style="min-width: 160px;"><i class="fa fa-user"></i>Ana Meyzbgh<i class="fa fa-chevron-down" style="font-size: .8em;"></i></a>
+        <ul>
+          <li><a href="{{ url_for('dashboard') }}">dashboard</a></li>
+          <li><a href="{{ url_for('logout') }}">logout</a></li>
+        </ul>
+      </li>
+    </ul>
+  </header>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script>
+    $(document).ready(function(){
+      $('.menu-toggle').on('click',function(){
+        $('.nav').toggleClass('showing');
+        $('.nav ul').toggleClass('showing');
+      });
+    });
+  </script>
+</body>
+</html>

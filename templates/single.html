@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>single blog</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Main CSS File -->
+    <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">
+    <!-- Script -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+
+    <style>
+
+
+      .widget {
+    background-color: #ffffff;
+    width: 90%;
+    margin: 30px auto 30px;
+    padding: 30px 40px;
+    border-radius: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0px 5px 20px 0px rgba(69, 67, 96, 0.1);}
+
+.widget__comments-title {
+    margin-bottom: 30px;
+    font-size: 25px;}
+
+.widget__comments {
+    margin-bottom: 30px;
+    border-bottom: 1px solid #eee; }
+
+.widget__comments-items{padding: 0px;}
+
+.widget__comments-item {
+    display: flex;
+    margin-bottom: 30px;}
+
+.widget__comments-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-right: 15px;}
+
+.widget__comments-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 0px;}
+
+.list-inline li {
+    display: inline-block;}
+
+.widget__comments-info .dot {
+    margin: 2px 10px !important;
+}
+.widget__comments-text {
+    margin-bottom: 15px;
+}
+.btn-link {
+    background-color: #f67280;
+    color: #ffffff !important;
+    padding: 1px 10px;
+    display: inline-flex;
+    text-align: center;
+    font-size: 13px;
+    border-radius: 20px;
+    font-weight: 500;
+    text-transform: capitalize;
+    text-decoration: none;
+    transition: all 0.5s ease-in-out;
+}
+
+.btn-link:hover {
+    color: #ffffff;
+    background-color: #131315;
+}
+
+.widget__form .form-group {
+    margin-bottom: 20px;
+}
+.widget__form-input {
+    background-color: #F9F9FF;
+    border: 1px solid #eee;
+    border-radius: 20px;
+    padding: 15px 20px;
+    font-size: 14px;
+    color: #131315;
+    display: inline-block;
+    transition: all 0.5s ease-in-out;
+    cursor: pointer;
+    width: 100%;
+}
+
+.widget__form-input:hover {
+    box-shadow: 0px 5px 20px 0px rgba(69, 67, 96, 0.1);
+    background-color: #ffffff;
+}
+
+textarea.form-control {
+    min-height: calc(1.5em +(.75rem + 2px));
+}
+
+.widget__form-label {
+    font-weight: 400;
+    font-size: 14px;
+}
+
+
+
+
+
+
+
+form { max-width:420px; margin:50px auto; width: 500px;}
+
+.feedback-input {
+  color:rgb(9, 9, 9);
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight:500;
+  font-size: 14px;
+  border-radius: 20px;
+  line-height: 22px;
+  background-color: #F9F9FF;
+  border:1px solid #eee;
+  transition: all 0.3s;
+  padding: 15px 20px;
+  margin-bottom: 15px;
+  width:100%;
+  box-sizing: border-box;
+  outline:0;
+}
+
+.feedback-input:hover{box-shadow: 0px 5px 20px 0px rgba(69, 67, 96, 0.1);
+    background-color: #ffffff;}
+
+
+.feedback-input:focus { border:1.5px solid #080808; background-color: #ffffff;}
+
+textarea {
+  height: 150px;
+  line-height: 150%;
+  resize:vertical;
+}
+
+[type="submit"] {
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  width: 100%;
+  border-radius:5px;
+  border:0;
+  cursor:pointer;
+  color:white;
+  font-size:20px;
+  padding-top:10px;
+  padding-bottom:10px;
+  transition: all 0.3s;
+  margin-top:-4px;
+  font-weight:700;
+}
+[type="submit"]:hover { background:#CC4949; }
+
+
+    </style>
+</head>
+<body>
+  <div id="progress">
+    <span id="progress-value">&#x1F815;</span>
+  </div>
+
+  <header>
+    <div class="logo">
+      <h1 class="logo-text">
+        <span>Blog</span>Project
+      </h1>
+    </div>
+    <div class="search-container">
+      <input type="text" name="search" placeholder="Search..." class="search-input">
+      <a href="#" class="search-btn">
+              <i class="fa fa-search"></i>      
+      </a>
+    </div>
+    <i class="fa fa-bars menu-toggle"></i>
+    <ul class="nav">
+      <li><a href="{{ url_for('home') }}">Home</a></li>
+      <li><a href="{{ url_for('blogs') }}">blogs</a></li>
+      <li><a href="{{ url_for('about') }}">about</a></li>
+      <li><a href="{{ url_for('contact') }}">contact</a></li>
+      <li><a href="{{ url_for('login') }}">sign up/login</a></li>
+      <li>
+        <a href="" style="min-width: 160px;"><i class="fa fa-user"></i>{{ session.get('user_email') }}<i class="fa fa-chevron-down" style="font-size: .8em;"></i></a>
+        <ul>
+          <li><a href="{{ url_for('dashboard') }}">dashboard</a></li>
+          <li><a href="{{ url_for('logout') }}">logout</a></li>
+        </ul>
+      </li>
+    </ul>
+</header>
+
+
+<div class="page wrapper">
+<!--content-->
+  <div class="content clearfix">
+    <div class="inner-page-breadcrumb-wrapper mb-20">
+    <ul>
+    <li><a href="{{ url_for('home') }}">Home</a></li>
+    <li><a href="">Gaming</a></li>
+    <li>Gameplay Gazette: News from the Gaming Front.</li>
+    </ul>
+    </div>
+
+    <div class="main-content">
+      <div class="single-post">
+        <img src="{{ url_for('static', filename='images/Food-science-and-nutrition-vs-food-technology.jpg') }}" alt="" class="single-post-image">
+        <div class="single-post-preview ">
+          <h2><a href="{{ url_for('single') }}">The Power of Gratitude: How Focusing on What You Have Can Change Your Life</a></h2>
+          <ul class="post-meta">
+          <li>Ana</li>
+          <span class="dot"></span>
+          <i class="fa calendar">Mar 14,2019</i>
+          <span class="dot"></span>
+          <li class="reading-time" id="readingTime"></li>
+          <span class="dot"></span>
+          <li>2 comments</li>
+          </ul>
+          <p class="preview-text"><h4>Introduction:</h4>
+
+            In today's fast-paced world, it's easy to get caught up in the hustle and bustle of daily life and lose sight of what's truly important. We're constantly bombarded with messages telling us to focus on what we don't have, what we're lacking, and what we're missing out on. But what if we told you that there's a better way? A way to shift your focus from what's lacking to what you already have, and reap the benefits of a more positive and fulfilling life.
+            
+            <h3> Science of Gratitude:</h3>
+            
+            Studies have shown that practicing gratitude can have a profound impact on our mental and emotional well-being. When we focus on what we're grateful for, our brains release endorphins, which are natural mood-boosters. Gratitude has also been linked to better sleep, stronger relationships, and even improved physical health.
+            
+            <h3>The Benefits of Practicing Gratitude:</h3>
+            
+            So, what are some of the benefits of practicing gratitude? For starters, it can help you:
+            
+            Develop a more positive outlook on life
+            Build stronger relationships with others
+            Improve your mental health and reduce stress
+            Increase your self-esteem and confidence
+            Even improve your physical health and well-being
+            How to Practice Gratitude:
+            
+            <h3>So, how can you start practicing gratitude in your daily life? Here are a few simple tips:</h3>
+            
+            Take a few minutes each day to write down three things you're grateful for
+            Share your gratitude with others – whether it's a kind word, a text message, or a small gift
+            Create a gratitude ritual – whether it's lighting a candle, saying a prayer, or simply taking a moment to reflect
+            <h4>Conclusion:</h4>
+            
+            Practicing gratitude is not just about feeling good – it's about living a better life. By focusing on what you have, rather than what you don't have, you can shift your perspective and cultivate a more positive and fulfilling life. So, take the time to practice gratitude today – and start reaping the benefits for yourself.
+            
+            I hope this sample text helps! Let me know if you have any specific requests or if you'd like me to write a different type of text for your blog.
+          </p>
+          <div class="section tags">
+            <ul class="tag-list">
+              <li><a href="">Travel</a></li>
+              <li><a href="">Forest</a></li>
+              <li><a href="">Torism</a></li>
+              <li><a href="">Nature</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+   
+
+      <div class="widget mb-50">
+        <div class="widget__comments">
+            <h5 class="widget__comments-title">Comments</h5>
+            <ul class="widget__comments-items">
+                {% for comment in comments %}
+                <li class="widget__comments-item">
+                    <img src="{{ url_for('static', filename='images/profile1.jpg') }}" alt="" class="widget__comments-img">
+                    <div class="widget__comments-content">
+                        <ul class="widget__comments-info list-inline">
+                            <li class="widget__comments-info__item">{{ comment.name }}</li>
+                            <li class="dot"></li>
+                            <li class="widget__comments-info__item">{{ comment.date.strftime('%B %d, %Y') }}</li>
+                        </ul>
+                        <p class="widget__comments-text">{{ comment.message }}</p>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+    <!--Leave-comments-->
+    <form class="widget__form" action="#" method="POST">
+      <h5 class="widget__form-title">Leave a Reply</h5>
+      <div class="row">
+          <div class="col-md-12">
+              <div class="form-group">
+                  <textarea name="message" class="form-control widget__form-input" placeholder="Message*" required="required"></textarea>
+              </div>
+          </div>
+          <div class="col-md-6">
+              <div class="form-group">
+                  <input type="text" name="name" class="form-control widget__form-input" placeholder="Name*" required="required">
+              </div>
+          </div>
+          <div class="col-md-6">
+              <div class="form-group">
+                  <input type="email" name="email" class="form-control widget__form-input" placeholder="Email*" required="required">
+              </div>
+          </div>
+          <div class="col-12">
+              <button type="submit" name="submit" class="btn">
+                  Send Comment
+              </button>
+          </div> 
+      </div>
+  </form>
+</div> </div>
+
+    <div class="sidebar">
+      <div class="section author">
+        <img src="{{ url_for('static', filename='images/profile_user.jpg') }}">
+        <h2 class="section-title">HI, i'm Awa</h2>
+        <p> bkf zfbzb vosl lsnvjxnl lxhiz b zlfbovuzb vlzjhob vzlvowbjf zzvfobz vbvzo b  zf.</p>
+        <ul class="media-icons">
+         <li><a href="" class="color-facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+         <li><a href="" class="color-linkedin"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+         <li><a href="" class="color-instagram"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+        </ul>
+      </div>
+      <div class="section topics">
+        <h2 class="section-title">TOPICS</h2>
+        <ul>
+            {% for topic in topics %}
+            <li><a href="{{ url_for('blogs3', topic_name=topic.name) }}">{{ topic.name }}</a></li>
+            {% endfor %}
+        </ul>
+      </div>
+      <div class="section tags">
+        <h2 class="section-title">TAGS</h2>
+        <ul class="tag-list">
+          <li><a href="">Poems</a></li>
+          <li><a href="">Travel</a></li>
+              <li><a href="">Forest</a></li>
+              <li><a href="">Torism</a></li>
+              <li><a href="">Nature</a></li>
+        </ul>
+      </div>
+      <div class="section ads">
+        <h2 class="section-title">Ads</h2>
+        <img src="{{ url_for('static', filename='images/ads1.jpg') }}">
+      </div>
+    </div>
+  </div>
+  <!--//content-->
+
+ 
+</div>
+
+  <script>
+    // Function to calculate reading time
+    function calculateReadingTime(text) {
+        const wordsPerMinute = 200; // Average reading speed
+        const words = text.split(/\s+/).length; // Count words
+        const readingTime = Math.ceil(words / wordsPerMinute); // Calculate reading time in minutes
+        return readingTime;
+    }
+    
+    // Get the blog content and calculate reading time
+    const blogContent = document.querySelector('body').innerText; // Get all text in the body
+    const readingTime = calculateReadingTime(blogContent);
+    
+    // Display the estimated reading time
+    document.getElementById('readingTime').innerText = `${readingTime} minute(s)`;
+    </script>
+    
+</body>
+</html>

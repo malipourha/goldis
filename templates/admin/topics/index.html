@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+          <h1 class="logo-text">
+            <span>Blog</span>Project
+          </h1>
+        </div>
+        <div class="search-container">
+          <input type="text" name="search" placeholder="Search..." class="search-input">
+          <a href="#" class="search-btn">
+                  <i class="fa fa-search"></i>      
+          </a>
+        </div>
+        <i class="fa fa-bars menu-toggle"></i>
+        <ul class="nav">
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('blogs') }}">blogs</a></li>
+            <li><a href="{{ url_for('about') }}">about</a></li>
+            <li><a href="{{ url_for('contact') }}">contact</a></li>
+            <li><a href="{{ url_for('login') }}">sign up/login</a></li>
+          <li>
+            <a href="" style="min-width: 160px;"><i class="fa fa-user"></i>{{ session.get('user_email') }}<i class="fa fa-chevron-down" style="font-size: .8em;"></i></a>
+            <ul>
+              <li><a href="{{ url_for('dashboard') }}">dashboard</a></li>
+              <li><a href="{{ url_for('logout') }}">logout</a></li>
+            </ul>
+          </li>
+        </ul>
+    </header>
+    
+<!-- admin Page Wrapper -->
+<div class= "admin-wrapper">
+    <!--left sidebar-->
+    <div class="left-sidebar">
+        <ul>
+            <li><a href="{{ url_for('dashboard') }}">Manage profile</a></li>
+            <li><a href="{{ url_for('admin_posts') }}">Manage posts</a></li>
+            <li><a href="{{ url_for('admin_users') }}">Manage users</a></li>
+            <li><a href="{{ url_for('admin_topics') }}">Manage topics</a></li>
+        </ul>
+    </div>
+    <!--// left sidebar-->
+    <!--admin content-->
+    <div class="admin-content">
+        <div class="button-group">
+            <a href="{{ url_for('create_topic') }}" class="btn btn-big">Add Topic</a>
+            <a href="{{ url_for('admin_topics') }}" class="btn btn-big">Manage Topic</a>
+        </div>
+
+        <div class="content" style="display: block;">
+            <h2 class="page-title">Manage Topics</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>SN</th>
+                        <th>Name</th>
+                        <th>State</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for topic in topics %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>{{ topic.name }}</td>
+                        <td>{{ topic.state }}</td>
+                        <td>
+                            <a href="{{ url_for('edit_topic', id=topic.id) }}" class="edit">edit</a>
+                            <a href="{{ url_for('delete_topic', id=topic.id) }}" class="delete">delete</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!--// admin content-->
+
+
+</div>
+<!-- // Page Wrapper -->
+    
+</body>
+</html>
